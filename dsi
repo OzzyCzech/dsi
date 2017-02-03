@@ -78,8 +78,8 @@ do
 		name=`basename "$f"`
 		if [ -e "$to/$date/$name" ]
 		then
-			dmd5=`md5sum "$to/$date/$name" | cut -d' ' -f1`
-			smd5=`md5sum "$f" | cut -d' ' -f1`
+			dmd5=`md5 "$to/$date/$name" | cut -d' ' -f1`
+			smd5=`md5 "$f" | cut -d' ' -f1`
 
 			if [ "$smd5" != "$dmd5" ]
 			then
