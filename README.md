@@ -22,7 +22,7 @@ All error files are copied in 'unknown' folder that must be checked.
 
 ## Examples
 
-Reorganize folder 2017 with images to structure 2016/[month]/file
+Reorganize folder 2017 with images to structure `2016/[month]/file`
 
 ```bash
 ./dsi ./2017 --to .
