@@ -1,0 +1,129 @@
+#!/bin/bash
+
+# Date copy
+#
+# Script that move or copy recursively files containing creation
+# dates to a year/month directory structure
+# New files are directly moved if it does exists
+# if it exists, filename_MD5 is created to allow further checks
+# Logs are in copied.log, already.log and error.log
+# . indicates move or copy
+# + indicates move or copy with MD5
+# _ indicates already there
+# error files are copied in 'unknown' folder that must be checked
+#
+# Example usage:
+#
+# Reorganize folder 2017 with images to structure 2016/[month]/file
+# ./dsi ./2017 --to .
+#
+# Create Backup of all images in ./Pictures to externall hard drive Backup
+# ./dsi ./Pictures --to /Volumes/Backup --cp
+
+usage() { echo "Usage: $0 dir [--to output dir] [--cp]" 1>&2; exit 1; }
+
+# show help
+if [ "$#" -lt 1 ]
+then
+	usage
+fi
+
+# read bash parametters
+method="mv"
+while [[ ${1} ]]; do
+	case "${1}" in
+		  --from) from=${1} ;;
+			--to)	to=${2}; shift ;;
+			--cp)	method="cp" ;;
+			*)
+				if [ ! -d "$1"  ] ; then
+					echo " is not a directory"
+					usage
+				else
+					from=${1}
+				fi
+	esac
+	if ! shift ; then
+			usage
+	fi
+done
+
+# check if to is empty
+if [ -z "$to" ] ; then
+	to=$from # use same directory
+fi
+
+# Show hint...
+if [ $method = "mv" ] ; then
+	echo "Move images from '$from' dir to '$to' dir"
+else
+	echo "Copy images from '$from' dir to '$to' dir"
+fi
+
+unknown="$to/unknown"
+mkdir -p $unknown
+
+moved=0
+error=0
+already=0
+total=0
+
+find -L "$from" -not -path '*/\.*' -type f | while read f
+do
+	ts=`date`
+	date=`mdls -name kMDItemContentCreationDate "$f" | cut -d' ' -f3 | cut -d'-' -f1,2 | tr '-' '/'`
+	if [ -n "$date" ]
+	then
+		mkdir -p "$to/$date"
+		name=`basename "$f"`
+		if [ -e "$to/$date/$name" ]
+		then
+			dmd5=`$MD5SUM "$to/$date/$name" | cut -d' ' -f1`
+			smd5=`$MD5SUM "$f" | cut -d' ' -f1`
+
+			if [ "$smd5" != "$dmd5" ]
+			then
+				echo "[$ts] $method $f > $to/$date/$dmd5-$name" >> moved.log
+				$method "$f" "$to/$date/$dmd5-$name"
+				echo -n +
+				moved=$((moved + 1))
+			else
+				echo "[$ts] $f > $to/$date/$name" >> already.log
+				echo -n _
+				already=$((already + 1))
+			fi
+		else
+			echo "[$ts] $method $f > $to/$date" >> moved.log
+			$method "$f" "$to/$date"
+			echo -n .
+			moved=$((moved + 1))
+		fi
+	else
+		echo "[$ts] $f" >> error.log
+		path=`dirname "$f"`
+		mkdir -p "$unknown/$path"
+		cp "$f" "$unknown/$path/"
+		error=$((error + 1))
+	fi
+
+    echo $moved > .moved
+    echo $error > .error
+    echo $already > .already
+done
+
+moved=`cat .moved`
+error=`cat .error`
+already=`cat .already`
+total=$((moved + error + already))
+
+echo ""
+
+# inform results
+if [ $method = "mv" ] ; then
+	echo "$total files parsed, $moved moved, $error errors, $already already there"
+else
+	echo "$total files parsed, $moved copied, $error errors, $already already there"
+fi
+
+# cleanup
+rm .moved .error .already
