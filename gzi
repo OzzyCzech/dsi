@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Gzip folder by folder
+
+find . -type d -maxdepth 1 -mindepth 1 -exec tar czf {}.tar.gz {}  \;
