@@ -72,14 +72,18 @@ find -L "$from" -not -path '*/\.*' -type f | while read f
 do
 	ts=`date`
 	date=`mdls -name kMDItemContentCreationDate "$f" | cut -d' ' -f3 | cut -d'-' -f1,2 | tr '-' '/'`
-	if [ -n "$date" ]
-	then
+
+	if [ "$date" = '(none)' ] ; then
+		date = `$(date --date="$(GetFileInfo -d "$f")" +%Y/%m)`
+	fi
+
+	if [ -n "$date" ] ; then
 		mkdir -p "$to/$date"
 		name=`basename "$f"`
 		if [ -e "$to/$date/$name" ]
 		then
-			dmd5=`md5 "$to/$date/$name" | cut -d' ' -f1`
-			smd5=`md5 "$f" | cut -d' ' -f1`
+			dmd5=`$MD5SUM "$to/$date/$name" | cut -d' ' -f1`
+			smd5=`$MD5SUM "$f" | cut -d' ' -f1`
 
 			if [ "$smd5" != "$dmd5" ]
 			then
