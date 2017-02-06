@@ -28,17 +28,18 @@ do
 	fi
 
  	# Get the extension in lower case
-  ext=`echo ${f##*.} | tr '[:upper:]' '[:lower:]'`
+        ext=`echo ${f##*.} | tr '[:upper:]' '[:lower:]'`
+	todir=$(dirname "${f}")
 
 	# Target filename add surfix
-	if [[ -e $from/$filename.$ext ]] ; then
+	if [[ -e $todir/$filename.$ext ]] ; then
 	    surfix=100001 # leading zeros --> 00001
-	    while [[ -e "${from}/${filename}-${surfix:1}.${ext}" ]] ; do
+	    while [[ -e "${todir}/${filename}-${surfix:1}.${ext}" ]] ; do
 	        let surfix++
 	    done
 	    filename="${filename}-${surfix:1}"
 	fi
 
 	# Rename file...
-	mv -iv "${f}" "${from}/${filename}.${ext}"
+	mv -iv "${f}" "${todir}/${filename}.${ext}"
 done
