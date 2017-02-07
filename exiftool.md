@@ -25,6 +25,32 @@
 
     exiftool '-datetimeoriginal<filemodifydate' -if '(not $datetimeoriginal or ($datetimeoriginal eq "0000:00:00 00:00:00")) and ($filetype eq "JPEG")' .
     
+## All metadata
+
+Remove all metadata of a image file:
+
+`exiftool -all= -overwrite_original photo.jpg`
+
+Remove all metadata of all *.jpg files in current directory:
+
+`exiftool -all= -overwrite_original -ext *.jpg`
+
+## GPS
+
+Strip all metadata except for location (GPS):
+
+`exiftool -all= -tagsfromfile @ -gps:all *.jpg`
+
+Remove all GPS metadata of *.jpg files in current directory:
+
+`exiftool -gps:all= *.jpg`
+
+## JSON
+
+Outputs a grouped collection of records as JSON in a directory:
+
+`exiftool -json -g /path > collectionprofile.json`
+
 # Extra
 
 ### Create KML from geotagged photos
