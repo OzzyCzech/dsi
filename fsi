@@ -24,12 +24,12 @@ do
 	ts=`date`
 	filename=`mdls -name kMDItemContentCreationDate "$f" | cut -d' ' -f3,4 | tr ':' '.'`
 
-	if [ "$filename" = '(none)' ] ; then
+	if [ "$filename" = '(null)' ] ; then
 		filename=`$(date --date="$(GetFileInfo -d "$f")" +%Y-%m-%d %H.%M.%S)`
 	fi
 
  	# Get the extension in lower case
-  ext=`echo ${f##*.} | tr '[:upper:]' '[:lower:]'`
+  	ext=`echo ${f##*.} | tr '[:upper:]' '[:lower:]'`
 	todir=$(dirname "${f}")
 
 	# Target filename add surfix
