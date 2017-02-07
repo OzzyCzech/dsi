@@ -8,4 +8,5 @@ exiftool -filename -filemodifydate -createdate -r -if '(not $datetimeoriginal or
 exiftool -filename -filemodifydate -createdate -r -if '(not $createdate  or ($createdate eq "0000:00:00 00:00:00"))' .
 
 
-# exiftool -d "%Y/%m/%Y-%m-%D %H.%M.%S%%-c.%%le" "-filename<CreateDate"
+exiftool -m -d "%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" .
+exiftool -m -d "%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" "-testname<FileInodeChangeDate" "-testname<ModifyDate" "-testname<CreateDate" "-testname<CreationDate" "-testname<DateTimeOriginal" .
