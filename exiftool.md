@@ -1,7 +1,5 @@
 
-### Find images in a directory that don't have a DateTimeOriginal ###
-
-    exiftool -filename -filemodifydate -createdate -r -if '(not $datetimeoriginal) and $filetype eq "JPEG"' .
+## Organize images
 
 ### Organize images by years/months
 
@@ -16,6 +14,12 @@
 *Filename looks like 2014-01-01 12:00:00.jpg and will append -NUM if DateTimeOriginal is the same for multiple files*
 
     exiftool '-FileName<DateTimeOriginal' -d "%Y-%m-%d %H.%M.%S%%-c.%%e" .  
+    
+## Date & time
+
+### Find images in a directory that don't have a DateTimeOriginal ###
+
+    exiftool -filename -filemodifydate -createdate -r -if '(not $datetimeoriginal) and $filetype eq "JPEG"' .
     
 ### Update any photo that doesn't have DateTimeOriginal to have it based on file modify date
 
