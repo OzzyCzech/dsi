@@ -1,4 +1,4 @@
-# ISH - image structure helpers
+# Picture structure helpers
 
 ## dsi - directory structure images
 
