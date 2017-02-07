@@ -73,7 +73,7 @@ do
 	ts=`date`
 	date=`mdls -name kMDItemContentCreationDate "$f" | cut -d' ' -f3 | cut -d'-' -f1,2 | tr '-' '/'`
 
-	if [ "$date" = '(none)' ] ; then
+	if [ "$date" = '(null)' ] ; then
 		date = `$(date --date="$(GetFileInfo -d "$f")" +%Y/%m)`
 	fi
 
