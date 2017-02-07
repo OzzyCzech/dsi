@@ -3,9 +3,8 @@
 usage() { echo "Usage: $0 ." 1>&2; exit 1; }
 
 # show help
-if [ "$#" -lt 1 ]
-then
+if [ "$#" -lt 1 ] ; then
 	usage
 fi
 
-exiftool -time:all -s ${1}
+exiftool -time:all -s "$@"

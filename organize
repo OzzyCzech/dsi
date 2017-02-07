@@ -1,0 +1,11 @@
+#!/bin/bash
+
+exiftool -filename -filemodifydate -createdate -r -if '(not $datetimeoriginal) and $filetype eq "JPEG"' .
+
+
+exiftool -filename -filemodifydate -createdate -r -if '(not $datetimeoriginal or ($datetimeoriginal eq "0000:00:00 00:00:00"))' .
+
+exiftool -filename -filemodifydate -createdate -r -if '(not $createdate  or ($createdate eq "0000:00:00 00:00:00"))' .
+
+
+# exiftool -d "%Y/%m/%Y-%m-%D %H.%M.%S%%-c.%%le" "-filename<CreateDate"
