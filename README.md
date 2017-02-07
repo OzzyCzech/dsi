@@ -57,7 +57,7 @@ Gzip folder by folder
 
 ### Examples
 
-Recursively rename all files in a directory `Pictures`
+Gzip folder by folder to separate archives in `Pictures`
 
 ```bash
 ./fsi ./Pictures
