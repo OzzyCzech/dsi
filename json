@@ -1,0 +1,14 @@
+#!/bin/bash
+
+usage() { echo "Usage: $0 directory output.json" 1>&2; exit 1; }
+
+# show help
+if [ "$#" -lt 2 ]; then
+	usage
+fi
+
+if [ ! -d "$1"  ] ; then
+  usage
+fi
+
+exiftool -json -g ${1} > ${2}
