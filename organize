@@ -12,13 +12,13 @@ exiftool -r -m -d "Video/%Y/%Y-%m-%d %H.%M.%S%%-c.%%le" \
 # images
 
 exiftool -r -m -d "Pictures/%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" \
-  "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal"
+  "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
   -if '$filename !~ /^\./' \
-  -ext jpg -r "$@"
+  -ext jpg "$@"
 
 # raws
 
-exiftool -r -m -d "RAWs/%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" \
+exiftool -r -m -d "RAW/%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" \
   -if '$filename !~ /^\./' \
   "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
   -ext cr2 "$@"
