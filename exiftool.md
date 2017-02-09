@@ -12,6 +12,12 @@ exiftool -d "%Y/%m/%Y-%m-%D %H.%M.%S%%-c.%%le" "-filename<CreateDate" -r ./Photo
 exiftool -d "%Y/%m/%Y-%m-%D %H.%M.%S%%-c.%%le" "-filename<CreateDate" --ext cr2 -r /Volumes/SD
 ```
 
+### Move all Olympus images to directory Olympus
+
+```
+exiftool -r '-directory=Olympus' -if '$make eq "OLYMPUS CORPORATION"' .
+```
+
 ### Rename files to datestamp
 
 *Filename looks like 2014-01-01 12:00:00.jpg and will append -NUM if DateTimeOriginal is the same for multiple files*
