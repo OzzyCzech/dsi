@@ -4,15 +4,15 @@
 ### Organize images by years/months
 
 ```
-exiftool -d "%Y/%m/%Y-%m-%D %H.%M.%S%%-c.%%le" "-filename<CreateDate" -r ./Photos
+exiftool -d "%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" "-filename<CreateDate" -r ./Photos
 ```
 ### Download RAW files from SD card to current folder
 
 ```
-exiftool -d "%Y/%m/%Y-%m-%D %H.%M.%S%%-c.%%le" "-filename<CreateDate" --ext cr2 -r /Volumes/SD
+exiftool -d "%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" "-filename<CreateDate" --ext cr2 -r /Volumes/SD
 ```
 
-### Move all Olympus images to directory Olympus
+### Move all Olympus imagesto directory Olympus
 
 ```
 exiftool -r '-directory=Olympus' -if '$make eq "OLYMPUS CORPORATION"' .
