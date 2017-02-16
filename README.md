@@ -15,3 +15,15 @@ List of useful exif shortcuts
 ```
 ./clean-all-exif -ext
 ```
+
+## Find empty directories
+
+```
+find . -type d -empty -print
+```
+
+## Delete empty directories
+
+```
+find . -type d -empty -delete
+```
