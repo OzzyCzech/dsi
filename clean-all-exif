@@ -1,6 +1,6 @@
 #!/bin/bash
 
-usage() { echo "Usage: $0 dir [filename|-ext *.jpg]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 dir [filename|-ext *.jpg|...]" 1>&2; exit 1; }
 
 # show help
 if [ "$#" -lt 1 ]

@@ -7,4 +7,4 @@ if [ "$#" -lt 1 ] ; then
 	usage
 fi
 
-exiftool -overwrite_original -keywords+=${2} ${1}
+exiftool -overwrite_original -keywords+=${2} "${1}"

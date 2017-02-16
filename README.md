@@ -1,9 +1,17 @@
 # Picture structure helpers
 
+List of useful exif shortcuts
 
-## Links
 
-* https://github.com/kurkale6ka/help/blob/559f91df84cb06c989f63219e928f1a0b23163fc/exiftool.txt
-* http://libre-software.net/edit-metadata-exiftool/
-* http://ninedegreesbelow.com/photography/exiftool-commands.html#rename
-* https://linux.die.net/man/1/exiftool
+## Add comment
+
+```
+./add-comment 'comment text' ./Picture000.jpg
+./add-comment 'Christmas party' ./2017/01/24/* # all images in directory
+```
+
+## Remove all EXIF
+
+```
+./clean-all-exif -ext
+```
