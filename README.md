@@ -60,8 +60,8 @@ exif-to-json *.jpg > output.json
 
 
 ```
-find /Volumes/SD -type d -empty -print    # find
-find  /Volumes/SD -type d -empty -delete  # delete
+find /Volumes/SD -type d -empty -print          # find
+find /Volumes/SD -type d -empty -delete         # delete
 ```
 
 ## Hidden files
