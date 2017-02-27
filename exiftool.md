@@ -12,7 +12,7 @@ exiftool -d "%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" "-filename<CreateDate" -r ./Photo
 exiftool -d "%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" "-filename<CreateDate" --ext cr2 -r /Volumes/SD
 ```
 
-### Move all Olympus imagesto directory Olympus
+### Move all Olympus images to directory Olympus
 
 ```
 exiftool -r '-directory=Olympus' -if '$make eq "OLYMPUS CORPORATION"' .

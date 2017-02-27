@@ -2,6 +2,7 @@
 
 ## View tools
 
+alias exif-show="exiftool -s "
 alias exif-show-dates="exiftool -time:all -s "
 
 ## Download tools
@@ -30,10 +31,12 @@ function download-videos() {
 ## Export tools
 
 alias exif-to-json="exiftool -json -g "
+alias exif-thumbnail="exiftool -b -ThumbnailImage "
 
 ## Edit tools
 
 alias exif-remove-all="exiftool -overwrite_original -all= "
+alias exif-remove-gps="exiftool -overwrite_original -gps:all= "
 
 function exif-add-keyword() {
   exiftool -overwrite_original -keywords+=${2} "${1}"

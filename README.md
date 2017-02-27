@@ -5,27 +5,53 @@ List of useful exif shortcuts
 # Install
 
 ```
-source .images
+curl https://raw.githubusercontent.com/OzzyCzech/picture-structure-helpers/master/.images > ~/.images && source ~/.images
 ```
 
+# Usage
 
-## Add comment
+##  Download tools
+
+```
+download-images /Volumes/SD
+download-videos /Volumes/SD
+download-raws /Volumes/SD
+```
+
+## Add exif comment
 
 ```
 exif-add-comment "Comment" file.jpg
 exif-add-comment "Comment text" ./2017/01/24/*  # all images in directory
 ```
 
-## Remove all EXIF
+## Remove all exif information
 
 ```
 exif-remove-all file.jpg
+exif-remove-all -ext jpg .
 ```
 
+## Remove GPS exif information
+
 ```
-exif-to-json file.jpg
+exif-remove-gps file.jpg
+exif-remove-gps -ext jpg .
 ```
 
+### Generate thumbnail
+
+```
+exif-thumbnail image.jpg > image-thumbnail.jpg
+```
+
+### Export exif to json
+
+```
+exif-to-json image.jpg > image-exif.json
+```
+
+# Useful commands
 
 ## Find empty directories
 
@@ -37,4 +63,16 @@ find . -type d -empty -print
 
 ```
 find . -type d -empty -delete
+```
+
+## Show all hidden files
+
+```
+find . -name ".*"
+```
+
+## Remove all hidden files
+
+```
+find . -name ".*" -exec rm -rf {} \;
 ```
