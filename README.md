@@ -56,28 +56,19 @@ exif-to-json *.jpg > output.json
 
 # Useful commands
 
-## Find empty directories
+## Empty directories
+
 
 ```
-find . -type d -empty -print
+find /Volumes/SD -type d -empty -print    # find
+find  /Volumes/SD -type d -empty -delete  # delete
 ```
 
-## Delete empty directories
+## Hidden files
 
 ```
-find . -type d -empty -delete
-```
-
-## Show all hidden files
-
-```
-find . -name ".*"
-```
-
-## Remove all hidden files
-
-```
-find . -name ".*" -exec rm -rf {} \;
+find /Volumes/SD -name ".*"                     # find
+find /Volumes/SD -name ".*" -exec rm -rf {} \;  # delete
 ```
 
 # Syncing images from one folder to another
