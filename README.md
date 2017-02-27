@@ -76,7 +76,7 @@ find /Volumes/SD -name ".*" -exec rm -rf {} \;  # delete
 Copy **all missing files** from source directory to destination directory:
 
 ```
-rsync -ain [source dir] [dest dir] # -n is dry run
+rsync -ain [source dir] [dest dir]              # -n is dry run
 ```
 
 # Recommended tools and Apps
