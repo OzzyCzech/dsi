@@ -37,6 +37,7 @@ alias exif-thumbnail="exiftool -b -ThumbnailImage "
 
 alias exif-remove-all="exiftool -overwrite_original -all= "
 alias exif-remove-gps="exiftool -overwrite_original -gps:all= "
+alias exif-date-by-filename="exiftool '-alldates<filename'"
 
 function exif-add-keyword() {
   exiftool -overwrite_original -keywords+="${1}" ${2}
