@@ -14,7 +14,7 @@ curl https://raw.githubusercontent.com/OzzyCzech/picture-structure-helpers/maste
 
 Download images/raw/videos from `/Volumes/SD` to current directory
 
-```bash
+```
 download-images /Volumes/SD
 download-videos /Volumes/SD
 download-raws /Volumes/SD
@@ -23,7 +23,7 @@ download-raws /Volumes/SD
 ## Add exif comment
 
 ```
-exif-add-comment "Comment" file.jpg
+exif-add-comment "Comment text" file.jpg
 exif-add-comment "Comment text" ./2017/01/24/*  # all images in directory
 ```
 
@@ -51,6 +51,7 @@ exif-thumbnail image.jpg > image-thumbnail.jpg
 
 ```
 exif-to-json image.jpg > image-exif.json
+exif-to-json *.jpg > output.json
 ```
 
 # Useful commands
@@ -79,7 +80,23 @@ find . -name ".*"
 find . -name ".*" -exec rm -rf {} \;
 ```
 
+# Syncing images from one folder to another
+
+Copy **all missing files** from source directory to destination directory:
+
+```
+rsync -ain [source dir] [dest dir] # -n is dry run
+```
+
+# Recommended tools and Apps
+
+* [Flickr](https://www.flickr.com/) - 1TB free image storage
+* [Gemini 2](https://macpaw.com/store/gemini) - duplicity finder
+* [Amazon Cloud Drive](https://www.amazon.com/clouddrive) - cheap unlimited image/file storage
+
+
 # Links
 
 * [exiftool Application Documentation](http://www.sno.phy.queensu.ca/~phil/exiftool/exiftool_pod.html)
 * [ExifTool Command-Line Examples](http://owl.phy.queensu.ca/~phil/exiftool/examples.html)
+* [rsync man page](http://linuxcommand.org/man_pages/rsync1.html)

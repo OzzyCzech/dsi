@@ -30,7 +30,7 @@ function download-videos() {
 
 ## Export tools
 
-alias exif-to-json="exiftool -json -g "
+alias exif-to-json="exiftool -json -g -gps:all "
 alias exif-thumbnail="exiftool -b -ThumbnailImage "
 
 ## Edit tools
