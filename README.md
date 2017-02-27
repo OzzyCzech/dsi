@@ -12,7 +12,9 @@ curl https://raw.githubusercontent.com/OzzyCzech/picture-structure-helpers/maste
 
 ##  Download tools
 
-```
+Download images/raw/videos from `/Volumes/SD` to current directory
+
+```bash
 download-images /Volumes/SD
 download-videos /Volumes/SD
 download-raws /Volumes/SD
@@ -76,3 +78,8 @@ find . -name ".*"
 ```
 find . -name ".*" -exec rm -rf {} \;
 ```
+
+# Links
+
+* [exiftool Application Documentation](http://www.sno.phy.queensu.ca/~phil/exiftool/exiftool_pod.html)
+* [ExifTool Command-Line Examples](http://owl.phy.queensu.ca/~phil/exiftool/examples.html)
