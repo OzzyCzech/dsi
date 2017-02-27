@@ -39,11 +39,11 @@ alias exif-remove-all="exiftool -overwrite_original -all= "
 alias exif-remove-gps="exiftool -overwrite_original -gps:all= "
 
 function exif-add-keyword() {
-  exiftool -overwrite_original -keywords+=${2} "${1}"
+  exiftool -overwrite_original -keywords+="${1}" ${2}
 }
 
 function exif-add-comment() {
-  exiftool -overwrite_original -Comment=${2} "${1}"
+  exiftool -overwrite_original -Comment="${1}" ${2}
 }
 
 ## Backup/archive tools
