@@ -8,4 +8,4 @@ then
 	usage
 fi
 
-exiftool -all= -overwrite_original ${1}
+exiftool -all= -overwrite_original $@

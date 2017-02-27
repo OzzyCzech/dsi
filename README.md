@@ -2,19 +2,30 @@
 
 List of useful exif shortcuts
 
+# Install
+
+```
+source .images
+```
+
 
 ## Add comment
 
 ```
-./add-comment 'comment text' ./Picture000.jpg
-./add-comment 'Christmas party' ./2017/01/24/* # all images in directory
+exif-add-comment "Comment" file.jpg
+exif-add-comment "Comment text" ./2017/01/24/*  # all images in directory
 ```
 
 ## Remove all EXIF
 
 ```
-./clean-all-exif -ext
+exif-remove-all file.jpg
 ```
+
+```
+exif-to-json file.jpg
+```
+
 
 ## Find empty directories
 

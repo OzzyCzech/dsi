@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+## View tools
+
+alias exif-show-dates="exiftool -time:all -s "
+
+## Download tools
+
+function download-images() {
+  exiftool -r -m -d "Pictures/%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" \
+    "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
+    -if '$filename !~ /^\./' \
+    -ext jpg -ext png -ext gif "$@"
+}
+
+function download-raws() {
+  exiftool -r -m -d "RAW/%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" \
+    -if '$filename !~ /^\./' \
+    "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
+    -ext cr2 "$@"
+}
+
+function download-videos() {
+  exiftool -r -m -d "Videos/%Y/%Y-%m-%d %H.%M.%S%%-c.%%le" \
+    "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
+    -if '$filename !~ /^\./' \
+    -ext mp4 -ext avi -ext mov -ext mkv "$@"
+}
+
+## Export tools
+
+alias exif-to-json="exiftool -json -g "
+
+## Edit tools
+
+alias exif-remove-all="exiftool -overwrite_original -all= "
+
+function exif-add-keyword() {
+  exiftool -overwrite_original -keywords+=${2} "${1}"
+}
+
+function exif-add-comment() {
+  exiftool -overwrite_original -Comment=${2} "${1}"
+}
+
+## Backup/archive tools
+
+function zip-folders() {
+  find ${1} -type d -maxdepth 1 -mindepth 1 -exec tar czf {}.tar.gz {}  \;
+}

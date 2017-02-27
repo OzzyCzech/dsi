@@ -40,6 +40,12 @@ exiftool -filename -filemodifydate -createdate -r -if '(not $datetimeoriginal) a
 exiftool '-datetimeoriginal<filemodifydate' -if '(not $datetimeoriginal or ($datetimeoriginal eq "0000:00:00 00:00:00")) and ($filetype eq "JPEG")' .
 ```
 
+### Set date by filename
+
+```
+exiftool "-alldates<filename" $@
+```
+
 ## All metadata
 
 Remove all metadata of a image file:
