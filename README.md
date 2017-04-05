@@ -79,12 +79,16 @@ Copy **all missing files** from source directory to destination directory:
 rsync -ain [source dir] [dest dir]              # -n is dry run
 ```
 
-# Recommended tools and Apps
+# Backup
 
-* [Flickr](https://www.flickr.com/) - 1TB free image storage
-* [Gemini 2](https://macpaw.com/store/gemini) - duplicity finder
 * [Amazon Cloud Drive](https://www.amazon.com/clouddrive) - cheap unlimited image/file storage
+* [Flickr](https://www.flickr.com/) - 1TB free image storage
+* [Lima](https://meetlima.com/) - Private Personal Cloud
 
+# Tools & Apps
+
+* [Gemini 2](https://macpaw.com/store/gemini) - duplicity finder
+* [rclone](https://rclone.org/) - command line program to sync files and directories to and from cloud storage providers
 
 # Links
 
