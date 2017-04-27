@@ -20,6 +20,12 @@ download-videos /Volumes/SD
 download-raws /Volumes/SD
 ```
 
+## Rename only
+
+```
+exif-rename-only .
+```
+
 ## Add exif comment
 
 ```
@@ -58,7 +64,6 @@ exif-to-json *.jpg > output.json
 
 ## Empty directories
 
-
 ```
 find /Volumes/SD -type d -empty -print          # find
 find /Volumes/SD -type d -empty -delete         # delete
@@ -69,6 +74,12 @@ find /Volumes/SD -type d -empty -delete         # delete
 ```
 find /Volumes/SD -name ".*"                     # find
 find /Volumes/SD -name ".*" -exec rm -rf {} \;  # delete
+```
+
+## Renaming files in a folder to sequential numbers
+
+```
+rename --counter-format 00001 --lower-case --keep-extension --expr='$_ = "$N" if @EXT' *
 ```
 
 # Syncing images from one folder to another

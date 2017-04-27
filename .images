@@ -11,14 +11,20 @@ function download-images() {
   exiftool -r -m -d "Pictures/%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" \
     "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
     -if '$filename !~ /^\./' \
-    -ext jpg -ext png -ext gif "$@"
+    -ext jpg -ext png -ext gif -ext tif -ext tiff "$@"
 }
 
 function download-raws() {
   exiftool -r -m -d "RAW/%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" \
     -if '$filename !~ /^\./' \
     "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
-    -ext cr2 "$@"
+    -ext cr2 -ext crw \          # Canon
+    -ext nef -ext nrw \          # Nikon
+    -ext arw -ext srf -ext sr2 \ # Sony
+    -ext raw -ext rw2 \          # Panasonic
+    -ext raf \                   # Fuji
+    -ext orf \                   # Olympus
+    "$@"
 }
 
 function download-videos() {
@@ -30,11 +36,23 @@ function download-videos() {
 
 ## Export tools
 
+function exif-rename-only() {
+  exiftool -r -m -d "%Y-%m-%d %H.%M.%S%%-c.%%le" \
+    "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
+    -if '$filename !~ /^\./' \
+    -ext jpg -ext png -ext gif -ext tif -ext tiff \ # Images
+    -ext mp4 -ext avi -ext mov -ext mkv -ext m4v \  # Videos
+    -ext cr2 -ext crw \                             # Canon
+    -ext nef -ext nrw \                             # Nikon
+    -ext arw -ext srf -ext sr2 \                    # Sony
+    -ext raw -ext rw2 \                             # Panasonic
+    -ext raf \                                      # Fuji
+    -ext orf \                                      # Olympus
+    "$@"
+}
+
 alias exif-to-json="exiftool -json -g -gps:all "
 alias exif-thumbnail="exiftool -b -ThumbnailImage "
-
-## Edit tools
-
 alias exif-remove-all="exiftool -overwrite_original -all= "
 alias exif-remove-gps="exiftool -overwrite_original -gps:all= "
 alias exif-date-by-filename="exiftool '-alldates<filename'"
