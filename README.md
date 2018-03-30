@@ -106,3 +106,4 @@ rsync -ain [source dir] [dest dir]              # -n is dry run
 * [exiftool Application Documentation](http://www.sno.phy.queensu.ca/~phil/exiftool/exiftool_pod.html)
 * [ExifTool Command-Line Examples](http://owl.phy.queensu.ca/~phil/exiftool/examples.html)
 * [rsync man page](http://linuxcommand.org/man_pages/rsync1.html)
+* [PhotoExporter](https://github.com/abentele/PhotosExporter)
