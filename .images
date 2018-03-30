@@ -16,14 +16,14 @@ function download-images() {
 
 function download-raws() {
   exiftool -r -m -d "RAW/%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" \
-    -if '$filename !~ /^\./' \
-    "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
-    -ext cr2 -ext crw \          # Canon
-    -ext nef -ext nrw \          # Nikon
-    -ext arw -ext srf -ext sr2 \ # Sony
-    -ext raw -ext rw2 \          # Panasonic
-    -ext raf \                   # Fuji
-    -ext orf \                   # Olympus
+		"-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
+		-if '$filename !~ /^\./' \
+    -ext cr2 -ext crw \
+    -ext nef -ext nrw \
+    -ext arw -ext srf -ext sr2 \
+    -ext raw -ext rw2 \
+    -ext orf \
+    -ext raf \
     "$@"
 }
 
@@ -40,14 +40,14 @@ function exif-rename-only() {
   exiftool -r -m -d "%Y-%m-%d %H.%M.%S%%-c.%%le" \
     "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
     -if '$filename !~ /^\./' \
-    -ext jpg -ext png -ext gif -ext tif -ext tiff \ # Images
-    -ext mp4 -ext avi -ext mov -ext mkv -ext m4v \  # Videos
-    -ext cr2 -ext crw \                             # Canon
-    -ext nef -ext nrw \                             # Nikon
-    -ext arw -ext srf -ext sr2 \                    # Sony
-    -ext raw -ext rw2 \                             # Panasonic
-    -ext raf \                                      # Fuji
-    -ext orf \                                      # Olympus
+    -ext jpg -ext png -ext gif -ext tif -ext tiff \
+    -ext mp4 -ext avi -ext mov -ext mkv -ext m4v \
+    -ext cr2 -ext crw \
+    -ext nef -ext nrw \
+    -ext arw -ext srf -ext sr2 \
+    -ext raw -ext rw2 \
+    -ext raf \
+    -ext orf \
     "$@"
 }
 
