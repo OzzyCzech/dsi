@@ -92,9 +92,11 @@ rsync -ain [source dir] [dest dir]              # -n is dry run
 
 # Backup
 
-* [Amazon Cloud Drive](https://www.amazon.com/clouddrive) - cheap unlimited image/file storage
+* [Synology NAS](https://www.synology.com/)
+* [External storage](https://www.wdc.com/products/external-storage.html)
 * [Flickr](https://www.flickr.com/) - 1TB free image storage
 * [Lima](https://meetlima.com/) - Private Personal Cloud
+* [Amazon Cloud Drive](https://www.amazon.com/clouddrive)
 
 # Tools & Apps
 
