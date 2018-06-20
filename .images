@@ -5,19 +5,16 @@
 alias exif-show="exiftool -s "
 alias exif-show-dates="exiftool -time:all -s "
 
-## Download tools
+## Download media
 
-function download-images() {
-  exiftool -r -m -d "Pictures/%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" \
+function download-media() {
+  exiftool -r -m -d "Pictures/%Y/%Y-%m-%d %H.%M.%S%%-c.%%le" \
     "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
     -if '$filename !~ /^\./' \
-    -ext jpg -ext png -ext gif -ext tif -ext tiff "$@"
-}
-
-function download-raws() {
-  exiftool -r -m -d "RAW/%Y/%m/%Y-%m-%d %H.%M.%S%%-c.%%le" \
-		"-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
-		-if '$filename !~ /^\./' \
+    -ext jpg -ext png -ext gif -ext tif -ext tiff \
+    \
+    -ext mp4 -ext avi -ext mov -ext mkv -ext m4v  \
+    \
     -ext cr2 -ext crw \
     -ext nef -ext nrw \
     -ext arw -ext srf -ext sr2 \
@@ -25,13 +22,6 @@ function download-raws() {
     -ext orf \
     -ext raf \
     "$@"
-}
-
-function download-videos() {
-  exiftool -r -m -d "Videos/%Y/%Y-%m-%d %H.%M.%S%%-c.%%le" \
-    "-filename<FileInodeChangeDate" "-filename<ModifyDate" "-filename<CreateDate" "-filename<CreationDate" "-filename<DateTimeOriginal" \
-    -if '$filename !~ /^\./' \
-    -ext mp4 -ext avi -ext mov -ext mkv -ext m4v "$@"
 }
 
 ## Export tools
